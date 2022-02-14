@@ -1,0 +1,19 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  background-color: var(--clr-container);
+  line-height: 3em;
+
+  &__item {
+    text-decoration: none;
+    color: var(--clr-primary);
+    font-weight: 600;
+
+    &::before{
+      content: '> ';
+      color: var(--clr-accent);
+      padding-right: 0.25em;
+    }
+  }
+}

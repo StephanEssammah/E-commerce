@@ -1,0 +1,38 @@
+.product {
+  background-color: var(--clr-container);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em 0em;
+  text-align: center;
+
+  &__image {
+    width: 50vw;
+    margin-bottom: 1em;
+  }
+
+  &__variant__image {
+    margin: 0.5em;
+    width: 10vw;
+  }
+
+  &__description {
+    color: rgb(63, 63, 63);
+    margin-bottom: 1em;
+  }
+
+  &__button {
+    padding: 1em;
+    width: 100%;
+    border: none;
+    background-color: var(--clr-accent);
+    color: white;
+    font-weight: 600;
+  }
+}
+
+.out-of-stock {
+  background-color: gray;
+  color: black;
+}
