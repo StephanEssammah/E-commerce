@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from 'axios'
 import '../styles/Home.scss'
 
-export const Home = ()  => {
+export const Category = ()  => {
   const [products, setProducts] = useState([])
   const navigate = useNavigate();
+  const { state }  = useLocation();
 
   useEffect(() => {
     const getData = async () => {
@@ -15,11 +16,13 @@ export const Home = ()  => {
     getData()
   }, [])
 
+
   return (
     <div className="home">
       {products.map((product, index) => {
         const { name, price } = product
         const image = product.variants[0].image
+        if(state.id !== product.categoryId[0]) return null;
         return <div 
           className="home__product" 
           key={index}

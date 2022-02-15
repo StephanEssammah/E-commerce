@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar';
 import { Cart } from './components/Cart';
 import { Menu } from './components/Menu';
 import { Product } from './components/Product';
+import { Category } from './components/Category';
 
 function App() {
   const [menu, setMenu] = useState(false)
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:product" element={<Product />} />
+        <Route path="/category/:category" element={<Category />} />
       </Routes>
     </div>
 }
