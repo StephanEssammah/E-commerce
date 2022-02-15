@@ -5,7 +5,6 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import { IoMdCart } from 'react-icons/io'
 
 export const Navbar = ({menu, setMenu}) => {
-  
   return (
     <div className="nav">
       <button className="nav__button"onClick={() => setMenu(!menu)}>

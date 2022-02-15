@@ -8,16 +8,12 @@ export const Home = ()  => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    
     const getData = async () => {
       const data = await axios.get('https://frend-ecom-api.azurewebsites.net/Product')
       setProducts(data.data)
-      console.log(data.data);
     }
     getData()
   }, [])
-  
-  
 
   return (
     <div className="home">

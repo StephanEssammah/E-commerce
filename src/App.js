@@ -11,7 +11,7 @@ import { Product } from './components/Product';
 function App() {
   const [menu, setMenu] = useState(false)
   const [categories, setCategories] = useState([])
-
+  
   useEffect(() => {
     const fetchCategories = async () => {
       const categories = await axios.get('https://frend-ecom-api.azurewebsites.net/Category')
