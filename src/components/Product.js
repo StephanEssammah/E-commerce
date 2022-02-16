@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { addProduct } from '../redux/cart'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProduct, increaseProduct } from '../redux/cart'
 import '../styles/Product.scss'
 
 export const Product = () => {
@@ -13,10 +13,7 @@ export const Product = () => {
   })
   const { state } = useLocation();
   const dispatch = useDispatch();
-
-  const addToCart = () => {
-    dispatch(addProduct({...product, selectedVariant: variant}))
-  }
+  const { products } = useSelector(state => state.cart);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -26,6 +23,23 @@ export const Product = () => {
     fetchProduct();
   }, [state])
 
+  const addToCart = () => {
+    const isProductInCart = products.find(item => {
+      return item.id === product.id && item.selectedVariant === variant
+    })
+    if(!isProductInCart) {
+      return dispatch(addProduct({...product, selectedVariant: variant}));
+    }
+    if(isProductInCart.amount < isProductInCart.variants[variant].stock) {
+      return dispatch(increaseProduct(isProductInCart.cartItemId));
+    }
+  }
+
+  const setActive = (index) => {
+    if (index === variant) return "product__variant__image activated"
+    return "product__variant__image"
+  }
+
   return (
     <div className="product">
       <img className="product__image" alt={product.name} src={product.variants[variant].image}/>
@@ -34,7 +48,7 @@ export const Product = () => {
         <h4>{product.price} NOK</h4>
       {product.variants.length > 1 &&
         <div>
-          {product.variants.map((variant, index) => <img key={index} onClick={() => setVariant(index)} className="product__variant__image" alt={variant.name} src={variant.image}/>)}
+          {product.variants.map((variant, index) => <img key={index} onClick={() => setVariant(index)} className={setActive(index)} alt={variant.name} src={variant.image}/>)}
         </div>
       }
       <p className="product__description">{product.description}</p>

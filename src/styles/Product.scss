@@ -16,8 +16,9 @@
     margin: 0.5em;
     width: 10vw;
     cursor: pointer;
+    filter: brightness(1.075);
     &:hover {
-      filter: brightness(1.05)
+      filter: brightness(1.125);
     }
   }
 
@@ -50,6 +51,10 @@
   &:hover {
     filter: brightness(1)
   }
+}
+
+.activated {
+  outline: 3px solid var(--clr-accent);
 }
 
 @media screen and (min-width: 481px) {

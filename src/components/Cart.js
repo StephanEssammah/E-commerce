@@ -23,6 +23,16 @@ export const Cart = () => {
     dispatch(decreaseProduct(id))
   }
 
+  const inc = (amount, cartItemId) => {
+    const cartItem = products.find(item => {
+      return item.cartItemId === cartItemId
+    })
+    const stock = cartItem.variants[cartItem.selectedVariant].stock
+    if(amount < stock) {
+      return dispatch(increaseProduct(cartItemId));
+    }
+  }
+
   return (
     <div className="cart">
 
@@ -39,7 +49,7 @@ export const Cart = () => {
             <div className="cart__product__amount">
               <button onClick={() => dec(amount, cartItemId)} className="cart__product__amount__btn">-</button>
               <p className="cart__product__amount__number">{amount}</p>
-              <button onClick={() => dispatch(increaseProduct(cartItemId))} className="cart__product__amount__btn">+</button>
+              <button onClick={() => inc(amount, cartItemId)} className="cart__product__amount__btn">+</button>
             </div>
           </div>
         </div>
