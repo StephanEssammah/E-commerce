@@ -41,22 +41,25 @@ export const Cart = () => {
 
         return (
           <div key={index} className="cart__product">
-            <img className="cart__product__image" alt={name}src={variants[selectedVariant].image}/>
+            <img className="cart__product__image" alt={name} src={variants[selectedVariant].image}/>
             <div className="cart__product__info">
               <div>
                 <h3>{name}</h3>
                 <p>{price * amount} NOK</p>
               </div>
-              <div className="cart__product__amount">
-                <button 
-                  onClick={() => decrease(amount, cartItemId)} 
-                  className="cart__product__amount__btn"
-                >-</button>
-                <p className="cart__product__amount__number">{amount}</p>
-                <button 
-                  onClick={() => increase(amount, cartItemId)} 
-                  className="cart__product__amount__btn"
-                >+</button>
+              <div>
+                <div className="cart__product__amount">
+                  <button 
+                    onClick={() => decrease(amount, cartItemId)} 
+                    className="cart__product__amount__btn"
+                  >-</button>
+                  <p className="cart__product__amount__number">{amount}</p>
+                  <button 
+                    onClick={() => increase(amount, cartItemId)} 
+                    className="cart__product__amount__btn"
+                  >+</button>
+                </div>
+                <p className="cart__product__stock">{`Stock: ${variants[selectedVariant].stock}`}</p>
               </div>
             </div>
           </div>

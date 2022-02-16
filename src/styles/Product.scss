@@ -18,6 +18,13 @@
 
   &__price {
     font-weight: 600;
+    margin-bottom: 1em;
+  }
+
+  &__variant {
+    &-span {
+      font-weight: 600;
+    }
   }
 
   &__variant__image {
@@ -25,6 +32,7 @@
     width: 10vw;
     cursor: pointer;
     filter: brightness(1.075);
+    margin-bottom: 1em;
     &:hover {
       filter: brightness(1.125);
     }
@@ -42,10 +50,6 @@
 
   &__no-more-stock {
     color: rgb(228, 0, 0);
-
-    &__hidden {
-      display: none;
-    }
   }
 
   &__button {
@@ -94,15 +98,16 @@
 
     &__image {
       width: 25vw;
+      max-width: 500px;
     }
 
     &__price {
-      margin-bottom: 1em;
+      margin-bottom: 1.5em;
     }
 
     &__variant__image {
       width: 3vw;
-      margin-bottom: 1em;
+      margin-bottom: 1.5em;
     }
   }
 }

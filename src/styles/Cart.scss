@@ -44,6 +44,9 @@
       }
     }
 
+    &__stock {
+      opacity: 0.5;
+    }
   }
 
   &__checkout {
@@ -55,6 +58,7 @@
     font-weight: 600;
     max-width: 300px;
     cursor: pointer;
+    margin-top: 0.5em;
     &:hover {
       filter: brightness(1.1)
     }

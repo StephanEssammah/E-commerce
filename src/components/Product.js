@@ -56,6 +56,7 @@ export const Product = () => {
       <div>
         <h3 className="product__title">{product.name}</h3>
         <h4 className="product__price">{product.price} NOK</h4>
+        <p className="product__variant">Variant: <span className="product__variant-span">{product.variants[variant].name}</span></p>
       {product.variants.length > 1 &&
         <div>
           {product.variants.map((variant, index) => (
