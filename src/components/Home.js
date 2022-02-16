@@ -8,11 +8,11 @@ export const Home = ()  => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getData = async () => {
+    const getProducts = async () => {
       const data = await axios.get('https://frend-ecom-api.azurewebsites.net/Product')
       setProducts(data.data)
     }
-    getData()
+    getProducts()
   }, [])
 
   return (
@@ -20,15 +20,17 @@ export const Home = ()  => {
       {products.map((product, index) => {
         const { name, price } = product
         const image = product.variants[0].image
-        return <div 
-          className="home__product" 
-          key={index}
-          onClick={() => navigate(`/product/${name}`, { state: product.id})}
+        return (
+          <div 
+            className="home__product" 
+            key={index}
+            onClick={() => navigate(`/product/${name}`, { state: product.id})}
           >
-          <img className="home__product__image" key={image} alt={name} src={image} />
-          <h3 className="home__product__title" key={name}>{name}</h3>
-          <p>{price} NOK</p>
-        </div>
+            <img className="home__product__image" key={image} alt={name} src={image} />
+            <h3 className="home__product__title" key={name}>{name}</h3>
+            <p>{price} NOK</p>
+          </div>
+        )
       })}
     </div>
   )

@@ -12,6 +12,14 @@
     margin-bottom: 1em;
   }
 
+  &__title {
+    font-size: 2em;
+  }
+
+  &__price {
+    font-weight: 600;
+  }
+
   &__variant__image {
     margin: 0.5em;
     width: 10vw;
@@ -19,6 +27,10 @@
     filter: brightness(1.075);
     &:hover {
       filter: brightness(1.125);
+    }
+
+    &-active {
+      outline: 3px solid var(--clr-accent);
     }
   }
 
@@ -41,20 +53,16 @@
     &:hover {
       filter: brightness(1.1)
     }
-  }
-}
 
-.out-of-stock {
-  background-color: gray;
-  color: black;
-  cursor: default;
-  &:hover {
-    filter: brightness(1)
+    &__out-of-stock {
+      background-color: gray;
+      color: black;
+      cursor: default;
+      &:hover {
+        filter: brightness(1)
+      }
+    }
   }
-}
-
-.activated {
-  outline: 3px solid var(--clr-accent);
 }
 
 @media screen and (min-width: 481px) {
@@ -80,9 +88,13 @@
       width: 25vw;
     }
 
-    &__variant__image {
-      width: 3vw;
+    &__price {
+      margin-bottom: 1em;
     }
 
+    &__variant__image {
+      width: 3vw;
+      margin-bottom: 1em;
+    }
   }
 }

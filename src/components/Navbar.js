@@ -6,7 +6,7 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import { IoMdCart } from 'react-icons/io'
 
 export const Navbar = ({menu, setMenu}) => {
-  const { products } = useSelector(state => state.cart)
+  const { productsInCart } = useSelector(state => state.cart)
   
   return (
     <div className="nav">
@@ -17,7 +17,7 @@ export const Navbar = ({menu, setMenu}) => {
         frend
       </NavLink>
       <NavLink className="nav nav__cart" to ="/cart">
-        {products.length > 0 && <span className="nav__product-amount">{products.length}</span>}
+        {productsInCart.length > 0 && <span className="nav__product-amount">{productsInCart.length}</span>}
         <IoMdCart className="nav" size="2em"/>
       </NavLink>
     </div>

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  products: []
+  productsInCart: []
 }
 
 export const cartSlice = createSlice({
@@ -9,24 +9,24 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action) => {
-      state.products.push({...action.payload, amount: 1, cartItemId: Date.now()})
+      state.productsInCart.push({...action.payload, amount: 1, cartItemId: Date.now()})
     },
     removeProduct: (state, action) => {
-      const index = state.products.findIndex(product => product.cartItemId === action.payload)
-      state.products.splice(index, 1)
+      const index = state.productsInCart.findIndex(product => product.cartItemId === action.payload)
+      state.productsInCart.splice(index, 1)
     },
-    increaseProduct: (state, action) => {
-      const index = state.products.findIndex(product => product.cartItemId === action.payload)
-      state.products[index].amount++
+    increaseProductQuantity: (state, action) => {
+      const index = state.productsInCart.findIndex(product => product.cartItemId === action.payload)
+      state.productsInCart[index].amount++
     },
-    decreaseProduct: (state, action) => {
-      const index = state.products.findIndex(product => product.cartItemId === action.payload)
-      state.products[index].amount--
+    decreaseProductQuantity: (state, action) => {
+      const index = state.productsInCart.findIndex(product => product.cartItemId === action.payload)
+      state.productsInCart[index].amount--
     },
     
   },
 })
 
-export const { addProduct, removeProduct, increaseProduct, decreaseProduct } = cartSlice.actions
+export const { addProduct, removeProduct, increaseProductQuantity, decreaseProductQuantity } = cartSlice.actions
 
 export default cartSlice.reducer
