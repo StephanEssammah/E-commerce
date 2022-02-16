@@ -1,5 +1,5 @@
 ## Tech Stack
-React, Redux, Sass
+React, React-Router, Redux, Sass
 
 ## Live Demo
 https://stephan-ecom.netlify.app/
