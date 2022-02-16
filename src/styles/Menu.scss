@@ -9,6 +9,9 @@
     text-decoration: none;
     color: var(--clr-primary);
     font-weight: 600;
+    &:hover {
+      filter: brightness(1.2);
+    }
 
     &::before{
       content: '> ';

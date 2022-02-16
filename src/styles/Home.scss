@@ -5,11 +5,15 @@
   gap: 1em;
 
   &__product {
-    background-color: #E2E2E0;
+    background-color: var(--clr-container);
     padding: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
+      &:hover{
+        filter: brightness(1.05);
+      }
 
     &__image {
       width: 30vw;

@@ -16,7 +16,7 @@ export const Navbar = ({menu, setMenu}) => {
       <NavLink className="nav nav__logo" to ="/">
         frend
       </NavLink>
-      <NavLink className="nav" to ="/cart">
+      <NavLink className="nav nav__cart" to ="/cart">
         {products.length > 0 && <span className="nav__product-amount">{products.length}</span>}
         <IoMdCart className="nav" size="2em"/>
       </NavLink>

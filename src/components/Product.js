@@ -34,7 +34,7 @@ export const Product = () => {
         <h4>{product.price} NOK</h4>
       {product.variants.length > 1 &&
         <div>
-          {product.variants.map((variant, index) => <img key={index} onClick={() => setVariant(index)}className="product__variant__image" alt={variant.name} src={variant.image}/>)}
+          {product.variants.map((variant, index) => <img key={index} onClick={() => setVariant(index)} className="product__variant__image" alt={variant.name} src={variant.image}/>)}
         </div>
       }
       <p className="product__description">{product.description}</p>

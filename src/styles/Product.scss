@@ -15,6 +15,10 @@
   &__variant__image {
     margin: 0.5em;
     width: 10vw;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(1.05)
+    }
   }
 
   &__description {
@@ -31,12 +35,21 @@
     color: white;
     font-weight: 600;
     max-width: 300px;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(1.1)
+    }
   }
 }
 
 .out-of-stock {
   background-color: gray;
   color: black;
+  cursor: default;
+  &:hover {
+    filter: brightness(1)
+  }
 }
 
 @media screen and (min-width: 481px) {
