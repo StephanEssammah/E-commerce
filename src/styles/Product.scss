@@ -40,6 +40,14 @@
     max-width: 500px;
   }
 
+  &__no-more-stock {
+    color: rgb(228, 0, 0);
+
+    &__hidden {
+      display: none;
+    }
+  }
+
   &__button {
     padding: 1em;
     width: 100%;

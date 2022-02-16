@@ -6,6 +6,8 @@ import { addProduct, increaseProductQuantity } from '../redux/cart'
 import '../styles/Product.scss'
 
 export const Product = () => {
+  const [ buttonText, setButtonText ] = useState('Add To Cart')
+  const [ noMoreStock, setNoMoreStock ] = useState(false)
   const [ variant, setVariant ] = useState(0)
   const [ product, setProduct ] = useState({
     name: '',
@@ -28,11 +30,19 @@ export const Product = () => {
       return item.id === product.id && item.selectedVariant === variant
     })
     if(!cartItem) {
-      return dispatch(addProduct({...product, selectedVariant: variant}))
+      dispatch(addProduct({...product, selectedVariant: variant}))
+      setButtonText('Added!')
+      setTimeout(() => setButtonText('Add To Cart'), 2000)
+      return;
     }
     if(cartItem.amount < cartItem.variants[variant].stock) {
-      return dispatch(increaseProductQuantity(cartItem.cartItemId))
+      dispatch(increaseProductQuantity(cartItem.cartItemId))
+      setButtonText('Added!')
+      setTimeout(() => setButtonText('Add To Cart'), 2000)
+      return;
     }
+    setNoMoreStock(true)
+    setTimeout(() => setNoMoreStock(false), 3000)
   }
 
   const outlineSelectedVariant = (index) => {
@@ -60,9 +70,10 @@ export const Product = () => {
         </div>
       }
       <p className="product__description">{product.description}</p>
+      {noMoreStock && <p className='product__no-more-stock'>No more in stock.</p>}
       {product.variants[variant].stock === 0 
       ? <button className="product__button product__button__out-of-stock">Out Of Stock</button>
-      :  <button onClick={addToCart} className="product__button">Add To Cart</button>}
+      :  <button onClick={addToCart} className="product__button">{buttonText}</button>}
       </div>
     </div>
   )
