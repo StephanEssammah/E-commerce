@@ -24,7 +24,7 @@ function App() {
 
   return <div className="app">
       <Navbar  menu={menu} setMenu={setMenu}/>
-      {menu && <Menu categories={categories}/>}
+      {menu && <Menu categories={categories} setMenu={setMenu} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />

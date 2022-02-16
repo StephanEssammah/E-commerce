@@ -15,7 +15,7 @@ export const Product = () => {
   const dispatch = useDispatch();
 
   const addToCart = () => {
-    dispatch(addProduct(product.variants[variant]))
+    dispatch(addProduct({...product, selectedVariant: variant}))
   }
 
   useEffect(() => {
@@ -29,8 +29,9 @@ export const Product = () => {
   return (
     <div className="product">
       <img className="product__image" alt={product.name} src={product.variants[variant].image}/>
-      <h3>{product.name}</h3>
-      <h4>{product.price} NOK</h4>
+      <div>
+        <h3>{product.name}</h3>
+        <h4>{product.price} NOK</h4>
       {product.variants.length > 1 &&
         <div>
           {product.variants.map((variant, index) => <img key={index} onClick={() => setVariant(index)}className="product__variant__image" alt={variant.name} src={variant.image}/>)}
@@ -40,7 +41,7 @@ export const Product = () => {
       {product.variants[variant].stock === 0 
       ? <button className="product__button out-of-stock">Out Of Stock</button>
       :  <button onClick={addToCart} className="product__button">Add To Cart</button>}
-      
+      </div>
     </div>
   )
 }

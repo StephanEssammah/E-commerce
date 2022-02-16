@@ -1,30 +1,51 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { increaseProduct, decreaseProduct, removeProduct } from '../redux/cart'
 import '../styles/Cart.scss'
 
 export const Cart = () => {
   const { products } = useSelector(state => state.cart)
-  console.log(products);
+  const dispatch = useDispatch();
+  const [total, setTotal] = useState(0)
+
+  useEffect(() => {
+    setTotal(0)
+    products.forEach(product => {
+      setTotal(prevstate => prevstate + (product.amount * product.price))
+    })
+  }, [products])
+
+  const dec = (amount, id) => {
+    if (amount === 1) {
+      dispatch(removeProduct(id))
+      return;
+    }
+    dispatch(decreaseProduct(id))
+  }
 
   return (
     <div className="cart">
 
       {products.map((product, index) => { 
+        const { name, price, variants, selectedVariant, amount, cartItemId } = product
+
         return <div key={index} className="cart__product">
-            <img className="cart__product__image" alt={product.name}src={product.image}/>
+            <img className="cart__product__image" alt={name}src={variants[selectedVariant].image}/>
             <div className="cart__product__info">
               <div>
-                <h1>{product.name}</h1>
-                <p>2 400 NOK</p>
+                <h3>{name}</h3>
+                <p>{price * amount} NOK</p>
               </div>
             <div className="cart__product__amount">
-              <button className="cart__product__amount__btn">-</button>
-              <p className="cart__product__amount__number">2</p>
-              <button className="cart__product__amount__btn">+</button>
+              <button onClick={() => dec(amount, cartItemId)} className="cart__product__amount__btn">-</button>
+              <p className="cart__product__amount__number">{amount}</p>
+              <button onClick={() => dispatch(increaseProduct(cartItemId))} className="cart__product__amount__btn">+</button>
             </div>
           </div>
         </div>
       })}
+      <h4>Total: {total} NOK</h4>
+      <button className="cart__checkout">Checkout</button>
       
     </div>
   )

@@ -9,16 +9,19 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action) => {
-      state.products.push(action.payload)
+      state.products.push({...action.payload, amount: 1, cartItemId: Date.now()})
     },
-    removeProduct: (state) => {
-      state.value -= 1
+    removeProduct: (state, action) => {
+      const index = state.products.findIndex(product => product.cartItemId === action.payload)
+      state.products.splice(index, 1)
     },
     increaseProduct: (state, action) => {
-      state.value += action.payload
+      const index = state.products.findIndex(product => product.cartItemId === action.payload)
+      state.products[index].amount++
     },
     decreaseProduct: (state, action) => {
-      state.value += action.payload
+      const index = state.products.findIndex(product => product.cartItemId === action.payload)
+      state.products[index].amount--
     },
     
   },

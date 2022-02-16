@@ -20,6 +20,7 @@
   &__description {
     color: rgb(63, 63, 63);
     margin-bottom: 1em;
+    max-width: 500px;
   }
 
   &__button {
@@ -29,10 +30,41 @@
     background-color: var(--clr-accent);
     color: white;
     font-weight: 600;
+    max-width: 300px;
   }
 }
 
 .out-of-stock {
   background-color: gray;
   color: black;
+}
+
+@media screen and (min-width: 481px) {
+  .product {
+    &__image {
+      width: 35vw;
+    }
+
+    &__variant__image {
+      width: 7vw;
+    }
+
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .product {
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+
+    &__image {
+      width: 25vw;
+    }
+
+    &__variant__image {
+      width: 3vw;
+    }
+
+  }
 }
